@@ -139,10 +139,10 @@ public class PathCacheExample {
             return;
         }
         String name = args[0];
-        if (name.contains("/")) {
+        /*if (name.contains("/")) {
             System.err.println("Invalid node name" + name);
             return;
-        }
+        }*/
         String path = ZKPaths.makePath(PATH, name);
         byte[] bytes = args[1].getBytes();
         try {

@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class DistributedAtomicLongExample {
-    private static final int QTY = 5;
+    private static final int QTY = 100;
     private static final String PATH = "/examples/counter";
 
     public static void main(String[] args) throws IOException, Exception {
@@ -29,6 +29,8 @@ public class DistributedAtomicLongExample {
             ExecutorService service = Executors.newFixedThreadPool(QTY);
             for (int i = 0; i < QTY; ++i) {
                 final DistributedAtomicLong count = new DistributedAtomicLong(client, PATH, new RetryNTimes(10, 10));
+                /*final DistributedAtomicLong count = new DistributedAtomicLong(client, PATH, new RetryNTimes(10, 10),
+                    PromotedToLock.builder().lockPath(PATH + "_1").build());*/
 
                 examples.add(count);
                 Callable<Void> task = new Callable<Void>() {
